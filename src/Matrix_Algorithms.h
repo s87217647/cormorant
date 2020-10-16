@@ -19,7 +19,20 @@ public:
         if(! can_multiply(a,b))
             return  false;
 
-        Matrix<T> rtn(a.get_num_rows(),b.get_num_cols());
+        size_t r = a.get_num_rows();
+        size_t c = b.get_num_cols();
+
+        Matrix<T> rtn(r, c);
+
+        for( size_t curtC = 0; curtC < c; curtC ++){
+            for( size_t curtR = 0; curtR < r; curtR ++){
+                T x = multiplyTwoVectors(get_row(a,curtR),get_col(b,curtC));
+                rtn.set(curtR,curtC, x);
+            }
+        }
+
+        cout << rtn << endl;
+
 
         return true;
     }
@@ -51,7 +64,49 @@ public:
     }
 
     //Helper class
+    template<typename T>
+    static vector<T> get_row(const Matrix<T> &a , size_t rowNum){
+        return a._rows[rowNum];
+    }
 
+    template<typename T>
+    static vector<T> get_row(const Sparse_Matrix<T> &a, size_t rowNum){
+        vector<T> rtn;
+        for(size_t c = 0; c < a.get_num_cols(); c ++){
+            rtn.push_back(a.get(rowNum,c));
+        }
+
+        return rtn;
+    }
+
+    template<typename T>
+    static vector<T> get_col(const Matrix<T> &a, size_t colNum){
+        vector<T> rtn;
+        for(size_t r = 0;r < a.get_num_rows();r++ ){
+            rtn.push_back(a._rows[r][colNum]);
+        }
+        return rtn;
+    }
+
+    template<typename T>
+    static vector<T> get_col(const Sparse_Matrix<T> &a, size_t colNum){
+        vector<T> rtn;
+        for(size_t r = 0;r < a.get_num_rows();r++ ){
+            rtn.push_back(a.get(r, colNum));
+        }
+        return rtn;
+    }
+
+    template<typename T>
+    static T multiplyTwoVectors(vector<T> v1, vector<T> v2){
+        T answer = 0;
+
+        for(size_t i = 0; i < v1.size(); i++){
+            answer +=  (v1[i] * v2[i]);
+        }
+
+        return  answer;
+    }
 
 };
 
