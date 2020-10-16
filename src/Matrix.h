@@ -95,6 +95,8 @@ public:
 
     friend class Tests;
 
+    friend class Mx;
+
 //    methods that are not in the pdf description;
 
     void set(size_t nr,size_t nc,T newObj);

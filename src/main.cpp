@@ -12,17 +12,10 @@ int main(){
 
     Sparse_Matrix<double> spaMat(5,5,6.66);
 
-    spaMat.clear();
-
-    cout << spaMat.toString() <<endl;
-
-    vector<int> x;
-    x.push_back(1);
-    x.push_back(2);
-
-    x.clear();
+    spaMat.set(1,1,5);
+    spaMat.set(1,0,5);
 
 
-
+    cout << spaMat.toString() << endl;
 
 }

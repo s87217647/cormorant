@@ -4,9 +4,9 @@ set(CMAKE_DEPENDS_LANGUAGES
   )
 # The set of files for implicit dependencies of each language:
 set(CMAKE_DEPENDS_CHECK_CXX
-  "F:/Google Drive/2020 Fall/CS 2C/Source Code/Cormorant/src/main.cpp" "F:/Google Drive/2020 Fall/CS 2C/Source Code/Cormorant/cmake-build-debug/CMakeFiles/Cormorant.dir/src/main.cpp.obj"
+  "/Users/swiftsheng/Google Drive/2020 Fall/CS 2C/Source Code/Cormorant/src/main.cpp" "/Users/swiftsheng/Google Drive/2020 Fall/CS 2C/Source Code/Cormorant/cmake-build-debug/CMakeFiles/Cormorant.dir/src/main.cpp.o"
   )
-set(CMAKE_CXX_COMPILER_ID "MSVC")
+set(CMAKE_CXX_COMPILER_ID "AppleClang")
 
 # The include file search paths:
 set(CMAKE_CXX_TARGET_INCLUDE_PATH

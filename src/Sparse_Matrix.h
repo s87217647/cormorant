@@ -89,6 +89,9 @@ public:
         if(!is_valid(row,col))
             return false;
 
+        if(val == this->_default_val)
+            return true;
+
         for(Node x : _rows [row]){
             if(x.get_col() == col) {
                 x.set_value(val);
@@ -96,8 +99,20 @@ public:
             }
         }
 
-        Node node(col, val);
-        _rows[row].push_back(node);// Unordered,
+        Node insertion(col, val);
+
+//        list<Node> theRow = _rows[row];
+//        list<Node<T>>::iterator it;
+
+
+        for(typename list<Node>::iterator it = _rows[row].begin(); it != _rows[row].end(); ++it){
+            if(it->get_col() > insertion.get_col()){
+                _rows[row].insert(it,insertion);
+                return true;
+            }
+        }
+
+        _rows[row].push_back(insertion);
         return  true;
     };
 
@@ -125,6 +140,7 @@ public:
 
     friend class  Tests;
 
+    friend class Mx;
 
 };
 
