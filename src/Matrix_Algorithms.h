@@ -70,12 +70,14 @@ public:
         size_t r = a.get_num_rows();
         size_t c = b.get_num_cols();
 
-        Sparse_Matrix<T> rtn(r, c, 0);
+        Sparse_Matrix<T> rtn(r, c, a.get_default_Val() * b.get_default_Val());
 
         for( size_t curtC = 0; curtC < c; curtC ++){
             for( size_t curtR = 0; curtR < r; curtR ++){
                 T x = multiplyTwoVectors(get_row(a,curtR),get_col(b,curtC));
-                rtn.set(curtR,curtC, x);
+                if(!rtn.is_default(x)) {
+                    rtn.set(curtR, curtC, x);
+                }
             }
         }
 
@@ -137,7 +139,6 @@ public:
         for(size_t i = 0; i < v1.size(); i++){
             answer +=  (v1[i] * v2[i]);
         }
-
         return  answer;
     }
 
@@ -159,7 +160,10 @@ public:
         size_t max_R = m.get_num_rows();
         for (size_t c = 0; c < max_C; c++) {
             for (size_t r = 0; r < max_R; r++) {
-                m.set(r,c,(rand()%10));
+                int T (rand()%10);
+                 if(T > 6) {
+                     m.set(r, c, T);
+                 }
             }
         }
 

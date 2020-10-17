@@ -15,19 +15,23 @@ using namespace std;
 
 
 template <typename T>
-class Sparse_Matrix{
+class Sparse_Matrix {
 private:
     struct Node {
         size_t _col;
         T _val;
 
-        Node(size_t c = 0, T v = T()) : _col(c), _val(v){}
+        Node(size_t c = 0, T v = T()) : _col(c), _val(v) {}
 
-        size_t get_col() const{return  _col;}
-        const T get_value() const{return _val;}
-        void set_value(const T &val){_val = val;}
-        virtual const T& operator=(const T& val){ return _val = val;}
-        friend ostream& operator<<(ostream& os, const Node &node ){
+        size_t get_col() const { return _col; }
+
+        const T get_value() const { return _val; }
+
+        void set_value(const T &val) { _val = val; }
+
+        virtual const T &operator=(const T &val) { return _val = val; }
+
+        friend ostream &operator<<(ostream &os, const Node &node) {
             return os << "{C: " << node.get_col() << ", V: " << node.get_value() << " }";
         }
 
@@ -39,9 +43,9 @@ private:
 
     //How to deal with nodes is the key here.
 public:
-    Sparse_Matrix(size_t nr = 0, size_t nc = 0, const T &default_val = T()):
-    _num_rows(nr), _num_cols(nc), _default_val(default_val){
-        for(size_t i = 0; i < _num_rows; i++){
+    Sparse_Matrix(size_t nr = 0, size_t nc = 0, const T &default_val = T()) :
+            _num_rows(nr), _num_cols(nc), _default_val(default_val) {
+        for (size_t i = 0; i < _num_rows; i++) {
             _rows.push_back(list<Node>(0));
         }
     }
@@ -50,94 +54,84 @@ public:
         *this = original;
     }
 
-    size_t get_num_rows() const{return _num_rows;}
+    size_t get_num_rows() const { return _num_rows; }
 
-    size_t get_num_cols() const{return _num_cols;}
+    size_t get_num_cols() const { return _num_cols; }
 
-    T get_default_Val() const{return _default_val;}
+    T get_default_Val() const { return _default_val; }
 
 
     class OOB_exception : public exception {
-    public: string what() { return "Out of bounds access" ;}
+    public:
+        string what() { return "Out of bounds access"; }
     };
 
-    bool is_valid(size_t r, size_t c) const{
-        if( r < 0 || c < 0 )
+    bool is_valid(size_t r, size_t c) const {
+        if (r < 0 || c < 0)
             return false;
 
-        if( r >= get_num_rows() || c >= get_num_cols())
+        if (r >= get_num_rows() || c >= get_num_cols())
             return false;
 
         return true;
 
     };
 
-    void clear(){
-        _rows = vector<list<Node>> (get_num_rows());
+    void clear() {
+        _rows = vector<list<Node>>(get_num_rows());
         _num_cols = 0;
     };
 
-    const T get(size_t r, size_t c) const{
-        if(!is_valid(r,c)){
+    const T get(size_t r, size_t c) const {
+        if (!is_valid(r, c)) {
             throw OOB_exception();
-            }
+        }
 
         list<Node> theRow = _rows[r];
-        for(Node x : theRow){
-            if(x.get_col() == c)
-                return  x.get_value();
+        for (Node x : theRow) {
+            if (x.get_col() == c)
+                return x.get_value();
         }
 
         return _default_val;
     };
 
-    // get back to it after to_string();
     bool set(size_t row, size_t col, const T& val){
         if(!is_valid(row,col))
             return false;
 
-//        if(val == this->_default_val)
-//            return true;
-        //Something is setted to setted to default value should just ger removed.
-        if(is_default(val)) {
-            for(typename list<Node>::iterator it = _rows[row].begin(); it != _rows[row].end(); ++it){
-                if(it->get_col() == col) {
-                    it->set_value(val);
-                    return true;
-                }
-                return true;
-        }
 
-
-//        for(Node x : _rows [row]){
-//            if(x.get_col() == col) {
-//                x.set_value(val);
-//                return true;
-//            }
-//        }
-
-        for(typename list<Node>::iterator it = _rows[row].begin(); it != _rows[row].end(); ++it){
-            if(it->get_col() == col) {
-                it->set_value(val);
-                return true;
-            }
-        }
-
+        list<Node> &theRow = _rows[row];
         Node insertion(col, val);
 
-//        list<Node> theRow = _rows[row];
-//        list<Node<T>>::iterator it;
 
 
-        for(typename list<Node>::iterator it = _rows[row].begin(); it != _rows[row].end(); ++it){
-            if(it->get_col() > insertion.get_col()){
-                _rows[row].insert(it,insertion);
-                return true;
+        for(typename list<Node>::iterator it = theRow.begin(); it != theRow.end(); ++it) {
+            size_t currentCol = it->get_col();
+
+            if (currentCol < col){
+                theRow.insert(++it,insertion);
+                break;
+            }
+
+            if(col > currentCol)
+                continue;
+
+            if(currentCol == col){
+                if(is_default(val)) {
+                    theRow.erase(it);
+                    return  true;
+                }
+                it->set_value(val);
             }
         }
 
-        _rows[row].push_back(insertion);
-        return  true;
+        if(theRow.empty()){
+            theRow.push_back(insertion);
+            return true;
+        }
+
+        return true;
     };
 
     const Matrix<T> get_slice(size_t r1, size_t c1, size_t r2, size_t c2) const{// Mistake most likely is here!
@@ -181,8 +175,8 @@ public:
 
     friend class Mx;
 
+
+
 };
-
-
 
 #endif //STILT_SPARSE_MATRIX_H
