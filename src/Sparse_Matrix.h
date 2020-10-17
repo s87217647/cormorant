@@ -46,9 +46,16 @@ public:
         }
     }
 
+    Sparse_Matrix(Sparse_Matrix<T> const &original) {
+        *this = original;
+    }
+
     size_t get_num_rows() const{return _num_rows;}
 
     size_t get_num_cols() const{return _num_cols;}
+
+    T get_default_Val() const{return _default_val;}
+
 
     class OOB_exception : public exception {
     public: string what() { return "Out of bounds access" ;}
@@ -89,12 +96,22 @@ public:
         if(!is_valid(row,col))
             return false;
 
-        if(val == this->_default_val)
+//        if(val == this->_default_val)
+//            return true;
+        if(is_default(val))
             return true;
 
-        for(Node x : _rows [row]){
-            if(x.get_col() == col) {
-                x.set_value(val);
+
+//        for(Node x : _rows [row]){
+//            if(x.get_col() == col) {
+//                x.set_value(val);
+//                return true;
+//            }
+//        }
+
+        for(typename list<Node>::iterator it = _rows[row].begin(); it != _rows[row].end(); ++it){
+            if(it->get_col() == col) {
+                it->set_value(val);
                 return true;
             }
         }
@@ -137,6 +154,21 @@ public:
 
         return strMat.to_string();
     };
+
+
+    void operator= (const Sparse_Matrix<T> &original){
+        _rows = original._rows;
+        _num_rows = original._num_rows;
+        _num_cols = original._num_cols;
+        _default_val = original._default_val;
+    }
+
+    static constexpr const float FLOOR = 1e-10;
+
+    bool is_default(const double &val){
+        return (abs(val - _default_val) < FLOOR);
+    }
+
 
     friend class  Tests;
 

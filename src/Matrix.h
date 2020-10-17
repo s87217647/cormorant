@@ -24,11 +24,14 @@ public:
    Matrix(Matrix<T> const &original);
 
     size_t get_num_rows() const{return  _rows.size();}
-    size_t get_num_cols() const{return _rows[0].size()>0? _rows[0].size():0;};
+    size_t get_num_cols() const{
+        if(_rows.size() == 0)
+            return 0;
 
+        return _rows[0].size()>0? _rows[0].size():0;
+    };
     void clear(){ _rows.clear();}
     void resize(size_t nr, size_t nc);
-
     T &at(size_t r, size_t c){//throws OOB  // It practically is []
         if(!is_valid(r,c)){
             throw OOB_exception();

@@ -8,29 +8,38 @@
 #include "Matrix_Algorithms.h"
 #include<cstdlib>
 using namespace std;
+
+
+
+
 int main(){
 
-    Matrix<int> m1(2,4);
-    Matrix<int> m2(4,5);
+    Sparse_Matrix<int> m1(2,4);
+    Sparse_Matrix<int> m2(4,5);
+    Sparse_Matrix<int> res(2,5);
 
-//    cout << m2 << endl;
-//Really? Github?
+//    Mx::setRandom(m1);
+//    Mx::setRandom(m2);
 
-    vector<int> x = Mx::get_row(m2 , 1);
+    m1.set(1,1,5);
+    size_t r = 1;
 
-    Mx::multiply(m1,m2);
+    cout<< m1.toString() << endl;
+
+
+    Mx::add_to_cell(m1,r,r,5);
+
+    cout<< m1.toString() << endl;
+    cout << m2.toString() << endl;
+
+
+//    Mx::multiply(m1,m2,res);
+
+//    cout << res.toString() << endl;
+
+
+
 
 }
 
-//class MyClass{
-static void setRandom(Matrix<int> m) {
-    size_t max_C = m.get_num_cols();
-    size_t max_R = m.get_num_cols();
-    for (size_t c = 0; c < max_C; c++) {
-        for (size_t r = 0; r < max_R; r++) {
-            m.set(c,r,(rand()%10));
-        }
-    }
 
-}
-//};

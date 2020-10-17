@@ -11,18 +11,66 @@ class Mx{
 public:
     template<typename T>
     static bool can_multiply(const Matrix<T> &a, const Matrix<T> &b) {
+        if(a.get_num_cols() == 0)
+            return false;
+        if(a.get_num_rows() == 0)
+            return false;
+        if(b.get_num_cols() == 0)
+            return false;
+        if(b.get_num_rows() == 0)
+            return false;
+
         return a.get_num_cols() == b.get_num_rows();
     }
 
     template<typename T>
-    static bool multiply(const Matrix<T> &a, const Matrix<T> &b) {
+    static bool multiply(const Matrix<T> &a, const Matrix<T> &b, Matrix<T> &res) {
+        if(!can_multiply(a,b))
+            return false;
+
+
+
+        size_t r = a.get_num_rows();
+        size_t c = b.get_num_cols();
+
+        Matrix<T> rtn(r,c);
+
+        for( size_t curtC = 0; curtC < c; curtC ++){
+            for( size_t curtR = 0; curtR < r; curtR ++){
+                rtn.set(curtR,curtC, multiplyTwoVectors(get_row(a,curtR),get_col(b,curtC)));
+            }
+        }
+        res = rtn;
+
+        return true;
+    }
+
+//Sparse_Matrix utils
+
+    template<typename T>
+    static bool can_multiply(const Sparse_Matrix<T> &a, const  Sparse_Matrix<T> &b) {
+        if(a.get_num_cols() == 0)
+            return false;
+        if(a.get_num_rows() == 0)
+            return false;
+        if(b.get_num_cols() == 0)
+            return false;
+        if(b.get_num_rows() == 0)
+            return false;
+
+        return a.get_num_cols() == b.get_num_rows();
+
+    }
+
+    template<typename T>
+    static bool multiply(const Sparse_Matrix<T> &a, const  Sparse_Matrix<T> &b,Sparse_Matrix<T> & res) {
         if(! can_multiply(a,b))
             return  false;
 
         size_t r = a.get_num_rows();
         size_t c = b.get_num_cols();
 
-        Matrix<T> rtn(r, c);
+        Sparse_Matrix<T> rtn(r, c, 0);
 
         for( size_t curtC = 0; curtC < c; curtC ++){
             for( size_t curtR = 0; curtR < r; curtR ++){
@@ -31,35 +79,20 @@ public:
             }
         }
 
-        cout << rtn << endl;
-
+        res = rtn;
 
         return true;
     }
-    template<typename T>
-    static bool multiply(const Matrix<T> &a, const Matrix<T> &b, const Matrix<T> &c) {
-        return true;
-    }
 
-//Sparse_Matrix utils
 
-    template<typename T>
-    static bool can_multiply(const Sparse_Matrix<T> &a, const  Sparse_Matrix<T> &b) {
-        return a.get_num_cols() == b.get_num_rows();
-    }
-
-    template<typename T>
-    static bool multiply(const Sparse_Matrix<T> &a, const  Sparse_Matrix<T> &b,const  Sparse_Matrix<T> &c) {
-        return true;
-    }
-
-    template<typename T>
-    static bool multiply(const Sparse_Matrix<T> &a, const  Sparse_Matrix<T> &b) {
-        return true;
-    }
 
     template<typename T>
     static bool add_to_cell(Sparse_Matrix<T> &a, size_t &r, size_t &c, const T &old_val) {
+        if(!a.is_valid(r,c))
+            return false;
+
+        const T &val = a.get(r, c) + old_val;
+        a.set(r, c, val);
         return true;
     }
 
@@ -106,6 +139,30 @@ public:
         }
 
         return  answer;
+    }
+
+    template <typename T>
+    static void setRandom(Matrix<T>& m) {
+        size_t max_C = m.get_num_cols();
+        size_t max_R = m.get_num_rows();
+        for (size_t c = 0; c < max_C; c++) {
+            for (size_t r = 0; r < max_R; r++) {
+                m.set(r,c,(rand()%10));
+            }
+        }
+
+    }
+
+    template <typename T>
+    static void setRandom(Sparse_Matrix<T>& m) {
+        size_t max_C = m.get_num_cols();
+        size_t max_R = m.get_num_rows();
+        for (size_t c = 0; c < max_C; c++) {
+            for (size_t r = 0; r < max_R; r++) {
+                m.set(r,c,(rand()%10));
+            }
+        }
+
     }
 
 };
