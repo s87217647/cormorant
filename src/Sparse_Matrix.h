@@ -98,8 +98,15 @@ public:
 
 //        if(val == this->_default_val)
 //            return true;
-        if(is_default(val))
-            return true;
+        //Something is setted to setted to default value should just ger removed.
+        if(is_default(val)) {
+            for(typename list<Node>::iterator it = _rows[row].begin(); it != _rows[row].end(); ++it){
+                if(it->get_col() == col) {
+                    it->set_value(val);
+                    return true;
+                }
+                return true;
+        }
 
 
 //        for(Node x : _rows [row]){
