@@ -39,10 +39,6 @@ int main(){
 //
     Mx::multiply(m1,m2,res);
     cout << res.toString() << endl;
-//
-//
-//
-//
 
 }
 

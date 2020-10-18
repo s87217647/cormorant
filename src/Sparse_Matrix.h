@@ -16,7 +16,7 @@ using namespace std;
 
 template <typename T>
 class Sparse_Matrix {
-private:
+public:
     struct Node {
         size_t _col;
         T _val;
@@ -36,6 +36,8 @@ private:
         }
 
     };
+
+    typedef Node _Node;
 
     vector<list<Node>> _rows;
     size_t _num_rows, _num_cols;
@@ -100,36 +102,33 @@ public:
         if(!is_valid(row,col))
             return false;
 
-
         list<Node> &theRow = _rows[row];
         Node insertion(col, val);
-
 
 
         for(typename list<Node>::iterator it = theRow.begin(); it != theRow.end(); ++it) {
             size_t currentCol = it->get_col();
 
-            if (currentCol < col){
-                theRow.insert(++it,insertion);
-                break;
+            if (currentCol > col){
+                theRow.insert(it, insertion);
+                return true;
             }
-
-            if(col > currentCol)
-                continue;
-
-            if(currentCol == col){
+            else if(currentCol == col){
                 if(is_default(val)) {
                     theRow.erase(it);
                     return  true;
                 }
                 it->set_value(val);
+                return  true;
             }
         }
 
-        if(theRow.empty()){
+        //if(theRow.empty()){
             theRow.push_back(insertion);
             return true;
-        }
+        //}
+
+
 
         return true;
     };

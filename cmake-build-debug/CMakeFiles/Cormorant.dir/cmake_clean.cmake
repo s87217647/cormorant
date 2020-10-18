@@ -1,8 +1,6 @@
 file(REMOVE_RECURSE
-  "CMakeFiles/Cormorant.dir/src/main.cpp.obj"
-  "Cormorant.exe"
-  "Cormorant.exe.manifest"
-  "Cormorant.lib"
+  "CMakeFiles/Cormorant.dir/src/main.cpp.o"
+  "Cormorant"
   "Cormorant.pdb"
 )
 
