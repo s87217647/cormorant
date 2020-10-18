@@ -66,80 +66,23 @@ public:
         if (!can_multiply(a, b))
             return false;
 
-        if(a.get_num_rows() == 0 ||  a.get_num_cols() == 0|| b.get_num_cols() == 0|| b.get_num_rows() == 0){
-            return true;
-        }
-
         size_t max_R = a.get_num_rows();
         size_t max_C = b.get_num_cols();
-        res = Sparse_Matrix<T>(max_R,max_C);
-//        res._num_cols = max_C;
-//        res._num_rows = max_R;
-
-//        for(auto row : a._rows){
-//            for()
-//
-//        }
+        res.clear();
+        res = Sparse_Matrix<T>(max_R, max_C);
 
 
-        for(size_t r = 0; r < max_R; r++){
-            for(size_t c = 0; c < max_C; c++) {
-                T sum = 0;
-                for(auto rowNode : a._rows[r]){
-                    sum += (rowNode.get_value() * b.get(rowNode.get_col(),c));
+        for (size_t r = 0; r < max_R; r++) {
+            for (size_t c = 0; c < max_C; c++) {
+                for (const auto &rowNode : a._rows[r]) {
+                    const T &matchingBVal = (T)b.get(rowNode.get_col(), c);
+                    add_to_cell(res, r, c, rowNode.get_value() * matchingBVal);
                 }
-
-                if(sum !=0)
-                    add_to_cell(res,r,c,sum);
             }
         }
 
-
         return true;
 
-//        size_t r = a.get_num_rows();
-//        size_t c = b.get_num_cols();
-//
-//        Sparse_Matrix<T> rtn(r, c, a.get_default_Val() * b.get_default_Val());
-//
-//        for( size_t curtC = 0; curtC < c; curtC ++){
-//            for( size_t curtR = 0; curtR < r; curtR ++){
-//
-//                T x = multiplyTwoVectors2(a._rows[curtR],get_col(b,curtC));
-//                if(!rtn.is_default(x)) {
-//                    res.set(curtR, curtC, x);
-//                }
-//            }
-//        }
-
-
-//In the future, you can use auto to determine type to loop over
-//        size_t r = a.get_num_rows();
-//        for (size_t curtR = 0; curtR < r; curtR++) {
-//            for (auto aNode :  a._rows[curtR]) {
-//                size_t c = aNode.get_col();
-//
-//                const T &val = aNode.get_value() * b.get(aNode.get_col(), curtR);
-//                add_to_cell(res, curtR, c, val);
-//            }
-//    }
-//
-//        size_t r = a.get_num_rows();
-//        for (size_t curtR = 0; curtR < r; curtR++) {
-//            for(auto it : a._rows[curtR]){
-//                //Now, it i
-//                size_t c = it. get_col();
-//                const T &ai0 = it.get_value();
-//                //a's curtR should be b's currentColum.
-//                const T &b0j = b.get(it.get_col(),curtR);
-//                cout << "From A : " << ai0 << " From B:" << b0j << endl;
-//                cout << "i: " << curtR << " j: " << c << endl;
-//
-//                add_to_cell(res, curtR, c, (ai0 * b0j));
-//            }
-//        }
-
-//        return true;
     }
 
 
@@ -148,9 +91,21 @@ public:
         if (!a.is_valid(r, c))
             return false;
 
+        //This could be a serious breach of speed;
         const T &val = a.get(r, c) + old_val;
-        if(val != 0)
+
+        if(a.is_default(val)){
+            for(auto it = a._rows[r].begin(); it != a._rows[r].end(); ++it) {
+                if(it->get_col() == c) {
+                    a._rows[r].erase(it);
+                    return  true;
+                }
+            }
+
+        }
+
         a.set(r, c, val);
+
         return true;
     }
 
@@ -200,14 +155,14 @@ public:
     }
 
     template<typename T1, typename T2>
-    static T2 multiplyTwoVectors2(const T1& v1, const vector<T2>& v2) {
+    static T2 multiplyTwoVectors2(const T1 &v1, const vector<T2> &v2) {
         T2 answer = 0;
 
-        for(auto x : v1){
+        for (auto x : v1) {
             answer += x.get_value() * v2[x.get_col()];
         }
 
-            //answer += (v1[i].get_value() * v2[v1[i].get_col()]);
+        //answer += (v1[i].get_value() * v2[v1[i].get_col()]);
 
         return answer;
     }
@@ -225,15 +180,17 @@ public:
     }
 
     template<typename T>
-    static void setRandom(Sparse_Matrix<T> &m) {
+    static void setRandom(Sparse_Matrix<T> &m, string comd) {
         size_t max_C = m.get_num_cols();
         size_t max_R = m.get_num_rows();
         for (size_t c = 0; c < max_C; c++) {
             for (size_t r = 0; r < max_R; r++) {
                 int randomInt(rand() % 10);
-//                 if(randomInt > 6)
-                m.set(r, c, randomInt);
-
+                if(comd.compare("zero") == 0) {
+                    m.set(r, c, 0);
+                }else {
+                    m.set(r, c, rand() % 10 - 5);
+                }
             }
         }
 

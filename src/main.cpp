@@ -14,29 +14,22 @@ using namespace std;
 
 int main(){
 
-    Sparse_Matrix<int> m1(2,4);
-    Sparse_Matrix<int> m2(4,3);
-    Sparse_Matrix<int> res(2,3);
+    Sparse_Matrix<int> m1(3,3);
+    Sparse_Matrix<int> m2(3,3);
+    Sparse_Matrix<int> res(3,3);
 
-    Mx::setRandom(m1);
-    Mx::setRandom(m2);
+//    Mx::setRandom(m1,"Not 0");
+//    Mx::setRandom(m2, "Not 0");
+
+//    Mx::setRandom(m1,"zero");
+    size_t x = -5;
+    size_t y = 5;
+    cout << x*y << endl;
 
 
     cout<< m1.toString() << endl;
     cout << m2.toString() << endl;
 
-
-
-//    m1 = m2;
-//    cout << & m1 << endl;
-//    cout << & m2 << endl;
-//
-////    Mx::add_to_cell(m1,r,r,5);
-//
-////    cout<< m1.toString() << endl;
-////    cout << m2.toString() << endl;
-//
-//
     Mx::multiply(m1,m2,res);
     cout << res.toString() << endl;
 

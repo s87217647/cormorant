@@ -56,6 +56,9 @@ public:
         *this = original;
     }
 
+    ~Sparse_Matrix() { this->clear(); }
+
+
     size_t get_num_rows() const { return _num_rows; }
 
     size_t get_num_cols() const { return _num_cols; }
@@ -89,8 +92,8 @@ public:
             throw OOB_exception();
         }
 
-        list<Node> theRow = _rows[r];
-        for (Node x : theRow) {
+        list<Node> const &theRow = _rows[r];
+        for (auto const &x : theRow) {
             if (x.get_col() == c)
                 return x.get_value();
         }
@@ -102,18 +105,18 @@ public:
         if(!is_valid(row,col))
             return false;
 
-        list<Node> &theRow = _rows[row];
+        list<Node>  &theRow = _rows[row];
         Node insertion(col, val);
 
-
         for(typename list<Node>::iterator it = theRow.begin(); it != theRow.end(); ++it) {
-            size_t currentCol = it->get_col();
 
-            if (currentCol > col){
+
+            if (it->get_col() > col){
                 theRow.insert(it, insertion);
                 return true;
             }
-            else if(currentCol == col){
+
+            else if(it->get_col() == col){
                 if(is_default(val)) {
                     theRow.erase(it);
                     return  true;
@@ -123,7 +126,6 @@ public:
             }
         }
 
-        //if(theRow.empty()){
             theRow.push_back(insertion);
             return true;
         //}
@@ -165,8 +167,8 @@ public:
 
     static constexpr const float FLOOR = 1e-10;
 
-    bool is_default(const double &val){
-        return (abs(val - _default_val) < FLOOR);
+    bool is_default(const T &val){
+        return ((val - _default_val)< FLOOR);
     }
 
 
