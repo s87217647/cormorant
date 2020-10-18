@@ -14,9 +14,9 @@ using namespace std;
 
 int main(){
 
-    Sparse_Matrix<double> m1(2,4);
-    Sparse_Matrix<double> m2(4,5);
-    Sparse_Matrix<double> res(2,5);
+    Sparse_Matrix<int> m1(2,4);
+    Sparse_Matrix<int> m2(4,3);
+    Sparse_Matrix<int> res(2,3);
 
     Mx::setRandom(m1);
     Mx::setRandom(m2);

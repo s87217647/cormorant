@@ -50,48 +50,48 @@ The CXX compiler identification is MSVC, found in "F:/Google Drive/2020 Fall/CS 
 Determining if the C compiler works passed with the following output:
 Change Dir: F:/Google Drive/2020 Fall/CS 2C/Source Code/Cormorant/cmake-build-debug/CMakeFiles/CMakeTmp
 
-Run Build Command(s):nmake /nologo cmTC_69b91\fast && 	"g:\VS Code\VC\Tools\MSVC\14.27.29110\bin\HostX86\x86\nmake.exe"  -f CMakeFiles\cmTC_69b91.dir\build.make /nologo -L                  CMakeFiles\cmTC_69b91.dir\build
-Building C object CMakeFiles/cmTC_69b91.dir/testCCompiler.c.obj
-	G:\VSCODE~1\VC\Tools\MSVC\1427~1.291\bin\Hostx86\x86\cl.exe @C:\Users\ADMINI~1\AppData\Local\Temp\nmB9D9.tmp
+Run Build Command(s):nmake /nologo cmTC_0be53\fast && 	"g:\VS Code\VC\Tools\MSVC\14.27.29110\bin\HostX86\x86\nmake.exe"  -f CMakeFiles\cmTC_0be53.dir\build.make /nologo -L                  CMakeFiles\cmTC_0be53.dir\build
+Building C object CMakeFiles/cmTC_0be53.dir/testCCompiler.c.obj
+	G:\VSCODE~1\VC\Tools\MSVC\1427~1.291\bin\Hostx86\x86\cl.exe @C:\Users\ADMINI~1\AppData\Local\Temp\nm50A7.tmp
 testCCompiler.c
-Linking C executable cmTC_69b91.exe
-	"G:\CLion 2020.2.3\bin\cmake\win\bin\cmake.exe" -E vs_link_exe --intdir=CMakeFiles\cmTC_69b91.dir --rc=G:\WINDOW~1\10\bin\100183~1.0\x86\rc.exe --mt=G:\WINDOW~1\10\bin\100183~1.0\x86\mt.exe --manifests  -- G:\VSCODE~1\VC\Tools\MSVC\1427~1.291\bin\Hostx86\x86\link.exe /nologo @CMakeFiles\cmTC_69b91.dir\objects1.rsp @C:\Users\ADMINI~1\AppData\Local\Temp\nmBBAF.tmp
+Linking C executable cmTC_0be53.exe
+	"G:\CLion 2020.2.3\bin\cmake\win\bin\cmake.exe" -E vs_link_exe --intdir=CMakeFiles\cmTC_0be53.dir --rc=G:\WINDOW~1\10\bin\100183~1.0\x86\rc.exe --mt=G:\WINDOW~1\10\bin\100183~1.0\x86\mt.exe --manifests  -- G:\VSCODE~1\VC\Tools\MSVC\1427~1.291\bin\Hostx86\x86\link.exe /nologo @CMakeFiles\cmTC_0be53.dir\objects1.rsp @C:\Users\ADMINI~1\AppData\Local\Temp\nm52CB.tmp
 
 
 
 Detecting C compiler ABI info compiled with the following output:
 Change Dir: F:/Google Drive/2020 Fall/CS 2C/Source Code/Cormorant/cmake-build-debug/CMakeFiles/CMakeTmp
 
-Run Build Command(s):nmake /nologo cmTC_08f3a\fast && 	"g:\VS Code\VC\Tools\MSVC\14.27.29110\bin\HostX86\x86\nmake.exe"  -f CMakeFiles\cmTC_08f3a.dir\build.make /nologo -L                  CMakeFiles\cmTC_08f3a.dir\build
-Building C object CMakeFiles/cmTC_08f3a.dir/CMakeCCompilerABI.c.obj
-	G:\VSCODE~1\VC\Tools\MSVC\1427~1.291\bin\Hostx86\x86\cl.exe @C:\Users\ADMINI~1\AppData\Local\Temp\nmC18A.tmp
+Run Build Command(s):nmake /nologo cmTC_f1187\fast && 	"g:\VS Code\VC\Tools\MSVC\14.27.29110\bin\HostX86\x86\nmake.exe"  -f CMakeFiles\cmTC_f1187.dir\build.make /nologo -L                  CMakeFiles\cmTC_f1187.dir\build
+Building C object CMakeFiles/cmTC_f1187.dir/CMakeCCompilerABI.c.obj
+	G:\VSCODE~1\VC\Tools\MSVC\1427~1.291\bin\Hostx86\x86\cl.exe @C:\Users\ADMINI~1\AppData\Local\Temp\nm57BC.tmp
 CMakeCCompilerABI.c
-Linking C executable cmTC_08f3a.exe
-	"G:\CLion 2020.2.3\bin\cmake\win\bin\cmake.exe" -E vs_link_exe --intdir=CMakeFiles\cmTC_08f3a.dir --rc=G:\WINDOW~1\10\bin\100183~1.0\x86\rc.exe --mt=G:\WINDOW~1\10\bin\100183~1.0\x86\mt.exe --manifests  -- G:\VSCODE~1\VC\Tools\MSVC\1427~1.291\bin\Hostx86\x86\link.exe /nologo @CMakeFiles\cmTC_08f3a.dir\objects1.rsp @C:\Users\ADMINI~1\AppData\Local\Temp\nmC237.tmp
+Linking C executable cmTC_f1187.exe
+	"G:\CLion 2020.2.3\bin\cmake\win\bin\cmake.exe" -E vs_link_exe --intdir=CMakeFiles\cmTC_f1187.dir --rc=G:\WINDOW~1\10\bin\100183~1.0\x86\rc.exe --mt=G:\WINDOW~1\10\bin\100183~1.0\x86\mt.exe --manifests  -- G:\VSCODE~1\VC\Tools\MSVC\1427~1.291\bin\Hostx86\x86\link.exe /nologo @CMakeFiles\cmTC_f1187.dir\objects1.rsp @C:\Users\ADMINI~1\AppData\Local\Temp\nm58A7.tmp
 
 
 
 Determining if the CXX compiler works passed with the following output:
 Change Dir: F:/Google Drive/2020 Fall/CS 2C/Source Code/Cormorant/cmake-build-debug/CMakeFiles/CMakeTmp
 
-Run Build Command(s):nmake /nologo cmTC_32a0e\fast && 	"g:\VS Code\VC\Tools\MSVC\14.27.29110\bin\HostX86\x86\nmake.exe"  -f CMakeFiles\cmTC_32a0e.dir\build.make /nologo -L                  CMakeFiles\cmTC_32a0e.dir\build
-Building CXX object CMakeFiles/cmTC_32a0e.dir/testCXXCompiler.cxx.obj
-	G:\VSCODE~1\VC\Tools\MSVC\1427~1.291\bin\Hostx86\x86\cl.exe @C:\Users\ADMINI~1\AppData\Local\Temp\nmC766.tmp
+Run Build Command(s):nmake /nologo cmTC_86b07\fast && 	"g:\VS Code\VC\Tools\MSVC\14.27.29110\bin\HostX86\x86\nmake.exe"  -f CMakeFiles\cmTC_86b07.dir\build.make /nologo -L                  CMakeFiles\cmTC_86b07.dir\build
+Building CXX object CMakeFiles/cmTC_86b07.dir/testCXXCompiler.cxx.obj
+	G:\VSCODE~1\VC\Tools\MSVC\1427~1.291\bin\Hostx86\x86\cl.exe @C:\Users\ADMINI~1\AppData\Local\Temp\nm5F2E.tmp
 testCXXCompiler.cxx
-Linking CXX executable cmTC_32a0e.exe
-	"G:\CLion 2020.2.3\bin\cmake\win\bin\cmake.exe" -E vs_link_exe --intdir=CMakeFiles\cmTC_32a0e.dir --rc=G:\WINDOW~1\10\bin\100183~1.0\x86\rc.exe --mt=G:\WINDOW~1\10\bin\100183~1.0\x86\mt.exe --manifests  -- G:\VSCODE~1\VC\Tools\MSVC\1427~1.291\bin\Hostx86\x86\link.exe /nologo @CMakeFiles\cmTC_32a0e.dir\objects1.rsp @C:\Users\ADMINI~1\AppData\Local\Temp\nmC89F.tmp
+Linking CXX executable cmTC_86b07.exe
+	"G:\CLion 2020.2.3\bin\cmake\win\bin\cmake.exe" -E vs_link_exe --intdir=CMakeFiles\cmTC_86b07.dir --rc=G:\WINDOW~1\10\bin\100183~1.0\x86\rc.exe --mt=G:\WINDOW~1\10\bin\100183~1.0\x86\mt.exe --manifests  -- G:\VSCODE~1\VC\Tools\MSVC\1427~1.291\bin\Hostx86\x86\link.exe /nologo @CMakeFiles\cmTC_86b07.dir\objects1.rsp @C:\Users\ADMINI~1\AppData\Local\Temp\nm6039.tmp
 
 
 
 Detecting CXX compiler ABI info compiled with the following output:
 Change Dir: F:/Google Drive/2020 Fall/CS 2C/Source Code/Cormorant/cmake-build-debug/CMakeFiles/CMakeTmp
 
-Run Build Command(s):nmake /nologo cmTC_c27a0\fast && 	"g:\VS Code\VC\Tools\MSVC\14.27.29110\bin\HostX86\x86\nmake.exe"  -f CMakeFiles\cmTC_c27a0.dir\build.make /nologo -L                  CMakeFiles\cmTC_c27a0.dir\build
-Building CXX object CMakeFiles/cmTC_c27a0.dir/CMakeCXXCompilerABI.cpp.obj
-	G:\VSCODE~1\VC\Tools\MSVC\1427~1.291\bin\Hostx86\x86\cl.exe @C:\Users\ADMINI~1\AppData\Local\Temp\nmCD90.tmp
+Run Build Command(s):nmake /nologo cmTC_1abd5\fast && 	"g:\VS Code\VC\Tools\MSVC\14.27.29110\bin\HostX86\x86\nmake.exe"  -f CMakeFiles\cmTC_1abd5.dir\build.make /nologo -L                  CMakeFiles\cmTC_1abd5.dir\build
+Building CXX object CMakeFiles/cmTC_1abd5.dir/CMakeCXXCompilerABI.cpp.obj
+	G:\VSCODE~1\VC\Tools\MSVC\1427~1.291\bin\Hostx86\x86\cl.exe @C:\Users\ADMINI~1\AppData\Local\Temp\nm650A.tmp
 CMakeCXXCompilerABI.cpp
-Linking CXX executable cmTC_c27a0.exe
-	"G:\CLion 2020.2.3\bin\cmake\win\bin\cmake.exe" -E vs_link_exe --intdir=CMakeFiles\cmTC_c27a0.dir --rc=G:\WINDOW~1\10\bin\100183~1.0\x86\rc.exe --mt=G:\WINDOW~1\10\bin\100183~1.0\x86\mt.exe --manifests  -- G:\VSCODE~1\VC\Tools\MSVC\1427~1.291\bin\Hostx86\x86\link.exe /nologo @CMakeFiles\cmTC_c27a0.dir\objects1.rsp @C:\Users\ADMINI~1\AppData\Local\Temp\nmCE5C.tmp
+Linking CXX executable cmTC_1abd5.exe
+	"G:\CLion 2020.2.3\bin\cmake\win\bin\cmake.exe" -E vs_link_exe --intdir=CMakeFiles\cmTC_1abd5.dir --rc=G:\WINDOW~1\10\bin\100183~1.0\x86\rc.exe --mt=G:\WINDOW~1\10\bin\100183~1.0\x86\mt.exe --manifests  -- G:\VSCODE~1\VC\Tools\MSVC\1427~1.291\bin\Hostx86\x86\link.exe /nologo @CMakeFiles\cmTC_1abd5.dir\objects1.rsp @C:\Users\ADMINI~1\AppData\Local\Temp\nm65D6.tmp
 
 
 
